@@ -81,6 +81,7 @@ server.use(pathname, connect.favicon())
       }));
 
 oauth = oauthware.createServer();
+
 server.use(pathname, oauth);
 
 try {
@@ -90,7 +91,7 @@ try {
     if (oauthware[m]) {
       config[m].host = serverUrl;
       config[m].path = '/' + m;
-
+      console.log(oauthware[m](config[m]))
       oauth.use(oauthware[m](config[m]));
     }
   }
@@ -99,6 +100,7 @@ try {
 }
 
 // listen to http://hostname:port
+
 
 server.listen(port, hostname);
 
